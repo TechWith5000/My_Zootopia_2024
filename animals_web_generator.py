@@ -25,13 +25,13 @@ output = ''  # define an empty string
 for animal in animals_data:
     # append information to each string
     output += '<li class="cards__item">'
-    output += f"Name: {animal["name"]}<br/>\n"
-    output += f"Diet: {animal["characteristics"]["diet"]}<br/>\n"
-    output += f"Location: {animal["locations"][0]}<br/>\n"
+    output += f"<div class='card__title'>{animal["name"]}</div><p class='card__text'>\n"
+    output += f"<strong>Diet:</strong>{animal["characteristics"]["diet"]}<br/>\n"
+    output += f"<strong>Location:</strong>{animal["locations"][0]}<br/>\n"
     try:
-        output += f"Type: {animal["characteristics"]["type"]}<br/>\n\n"
+        output += f"<strong>Type:</strong>{animal["characteristics"]["type"]}<br/>\n\n</p></li>"
     except KeyError:
-        output += f"<br/>\n"
+        output += f"\n</p></li>"
         continue
 
 #print(output)
