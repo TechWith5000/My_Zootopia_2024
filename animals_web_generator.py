@@ -38,3 +38,6 @@ for animal in animals_data:
 new_text = text_html.replace("__REPLACE_ANIMALS_INFO__", output)
 
 print(new_text)
+
+with open("animals.html", "w") as fileobj:
+    fileobj.write(new_text)
