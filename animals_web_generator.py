@@ -24,13 +24,14 @@ with open("animals_template.html", "r") as fileobj:
 output = ''  # define an empty string
 for animal in animals_data:
     # append information to each string
-    output += f"Name: {animal["name"]}\n"
-    output += f"Diet: {animal["characteristics"]["diet"]}\n"
-    output += f"Location: {animal["locations"][0]}\n"
+    output += '<li class="cards__item">'
+    output += f"Name: {animal["name"]}<br/>\n"
+    output += f"Diet: {animal["characteristics"]["diet"]}<br/>\n"
+    output += f"Location: {animal["locations"][0]}<br/>\n"
     try:
-        output += f"Type: {animal["characteristics"]["type"]}\n\n"
+        output += f"Type: {animal["characteristics"]["type"]}<br/>\n\n"
     except KeyError:
-        output += f"\n"
+        output += f"<br/>\n"
         continue
 
 #print(output)
