@@ -5,13 +5,6 @@ def load_data(file_path):
   with open(file_path, "r") as handle:
     return json.load(handle)
 
-animals_data = load_data('animals_data.json')
-
-
-with open("animals_template.html", "r") as fileobj:
-    text_html = fileobj.read()
-
-
 def serialize_animal(animal_obj):
     output = ''  # define an empty string
     # append information to each string
@@ -25,12 +18,26 @@ def serialize_animal(animal_obj):
         output += f"\n</p></li>"
     return output
 
-output = ''
-for animal_obj in animals_data:
-    output += serialize_animal(animal_obj)
-
-new_text = text_html.replace("__REPLACE_ANIMALS_INFO__", output)
 
 
-with open("animals.html", "w") as fileobj:
-    fileobj.write(new_text)
+def main():
+    animals_data = load_data('animals_data.json')
+
+    with open("animals_template.html", "r") as fileobj:
+        text_html = fileobj.read()
+
+    output = ''
+    for animal_obj in animals_data:
+        output += serialize_animal(animal_obj)
+
+    new_text = text_html.replace("__REPLACE_ANIMALS_INFO__", output)
+
+    with open("animals.html", "w") as fileobj:
+        fileobj.write(new_text)
+        print("The data was successfully added to the template format. See output in the animals.html file")
+
+
+if __name__ == "__main__":
+    main()
+
+
