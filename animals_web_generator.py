@@ -1,10 +1,14 @@
-import json
 import data_fetcher
 
+'''
+ +++ CODE FOR RECEIVING DATA NOT FROM AN API, BUT A JSON FILE: +++
+import json
 def load_data(file_path):
   """ Loads a JSON file """
   with open(file_path, "r") as handle:
     return json.load(handle)
+'''
+
 
 def serialize_animal(animal_obj):
     output = ''  # define an empty string
@@ -22,7 +26,7 @@ def serialize_animal(animal_obj):
 
 
 def main():
-    #animals_data = load_data('animals_data.json')
+    # FOR DATA FROM JSON: animals_data = load_data('animals_data.json')
     animal_name = input("Please enter an animal: ")
     animals_data = data_fetcher.fetch_data(animal_name)
 
