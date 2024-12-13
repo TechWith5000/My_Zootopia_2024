@@ -1,4 +1,5 @@
 import json
+import data_fetcher
 
 def load_data(file_path):
   """ Loads a JSON file """
@@ -21,7 +22,9 @@ def serialize_animal(animal_obj):
 
 
 def main():
-    animals_data = load_data('animals_data.json')
+    #animals_data = load_data('animals_data.json')
+    animal_name = input("Please enter an animal: ")
+    animals_data = data_fetcher.fetch_data(animal_name)
 
     with open("animals_template.html", "r") as fileobj:
         text_html = fileobj.read()
