@@ -26,18 +26,18 @@ def serialize_animal(animal_obj):
 
 
 def main():
-    # FOR DATA FROM JSON: animals_data = load_data('animals_data.json')
     animal_name = input("Please enter an animal: ")
     animals_data = data_fetcher.fetch_data(animal_name)
 
     with open("animals_template.html", "r") as fileobj:
         text_html = fileobj.read()
 
-    output = ''
-    for animal_obj in animals_data:
-        output += serialize_animal(animal_obj)
-
-    new_text = text_html.replace("__REPLACE_ANIMALS_INFO__", output)
+    if not animals_data:  # If no data is returned
+        error_message = f"<p style='color: red;'>No data found for the given animal: {animal_name}.</p>"
+        new_text = text_html.replace("__REPLACE_ANIMALS_INFO__", error_message)
+    else:
+        output = ''.join(serialize_animal(animal_obj) for animal_obj in animals_data)
+        new_text = text_html.replace("__REPLACE_ANIMALS_INFO__", output)
 
     with open("animals.html", "w") as fileobj:
         fileobj.write(new_text)
